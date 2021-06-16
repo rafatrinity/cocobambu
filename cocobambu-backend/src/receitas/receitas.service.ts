@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateReceitaDto } from './dto/create-receita.dto';
 import { UpdateReceitaDto } from './dto/update-receita.dto';
+import { Receita, ReceitaDocument } from './entities/receita.entity';
 
 @Injectable()
 export class ReceitasService {
+  constructor(@InjectModel(Receita.name) private receitaModel: Model<ReceitaDocument>){}
   create(createReceitaDto: CreateReceitaDto) {
-    return 'This action adds a new receita';
+    const receita = new this.receitaModel(createReceitaDto);
+    return receita.save();
   }
 
   findAll() {
-    return `This action returns all receitas`;
+    return this.receitaModel.find();
   }
 
   findOne(id: number) {
