@@ -1,1 +1,2 @@
+web: cd cocobambu-backend
 web: npm run start:prod
