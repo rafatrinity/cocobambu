@@ -1,5 +1,5 @@
 export class CreateReceitaDto {
-    name: string;
+    nome: string;
     desc: string;
     Ingredientes: Array<string>;
     preparo: {
